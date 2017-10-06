@@ -143,8 +143,10 @@ ghostdriver.Session = function(desiredCapabilities) {
     if (desiredCapabilities['phantomjs.cookies.path']) {
       _cookiePath = desiredCapabilities['phantomjs.cookies.path'];
       _negotiatedCapabilities['phantomjs.cookies.path'] = _cookiePath;
+      _cookieJar = require('cookiejar').create(_cookiePath);
+    } else {
+      _cookieJar = require('cookiejar').create();
     }
-    _cookieJar = require('cookiejar').create(_cookiePath);
 
     var
     /**
